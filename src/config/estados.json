@@ -1,0 +1,171 @@
+[
+  {
+    "key": "MT-1",
+    "nome": "Mato Grosso",
+    "uf": "MT",
+    "sinotica": "A Divisão de Meteorologia do Sistema de Proteção da Amazônia informa que ",
+    "regioes": [
+      {
+        "titulo": "CUIABÁ",
+        "sipams": ["A901"],
+        "inmet": ["A901"],
+        "ogimet": "83361",
+        "municipios": [
+          "Chapada dos Guimarães",
+          "Cuiabá",
+          "Nossa Senhora do Livramento",
+          "Santo Antônio do Leverger",
+          "Várzea Grande"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "RO-1",
+    "nome": "Rondônia",
+    "uf": "RO",
+    "regioes": [
+      {
+        "titulo": "PORTO VELHO",
+        "sipams": ["A925"],
+        "inmet": ["A925"],
+        "ogimet": "82824",
+        "municipios": ["Candeias do Jamari", "Itapuã do Oeste", "Porto Velho"]
+      },
+      {
+        "titulo": "ARIQUEMES",
+        "sipams": ["A940"],
+        "inmet": ["A940"],
+        "municipios": [
+          "Alto Paraíso",
+          "Ariquemes",
+          "Cacaulândia",
+          "Machadinho D'Oeste",
+          "Monte Negro",
+          "Rio Crespo",
+          "Vale do Anari",
+          "Campo Novo de Rondônia",
+          "Buritis",
+          "Cujubim"
+        ]
+      },
+      {
+        "titulo": "GUAJARÁ-MIRIM",
+        "sipams": ["P031"],
+        "ogimet": "85043",
+        "municipios": ["Costa Marques", "Guajará-Mirim", "São Francisco do Guaporé", "Nova Mamoré"]
+      },
+      {
+        "titulo": "JI-PARANÁ",
+        "sipams": [],
+        "wunderground": "IJIPAR7",
+        "municipios": [
+          "Governador Jorge Teixeira",
+          "Jaru",
+          "Ji-Paraná",
+          "Mirante da Serra",
+          "Nova União",
+          "Ouro Preto do Oeste",
+          "Presidente Médici",
+          "Teixeirópolis",
+          "Theobroma",
+          "Urupá",
+          "Vale do Paraíso"
+        ]
+      },
+      {
+        "titulo": "CACOAL",
+        "sipams": ["A939"],
+        "inmet": ["A939"],
+        "municipios": [
+          "Alta Floresta D'Oeste",
+          "Alto Alegre dos Parecis",
+          "Cacoal",
+          "Castanheiras",
+          "Espigão D'Oeste",
+          "Ministro Andreazza",
+          "Novo Horizonte do Oeste",
+          "Rolim de Moura",
+          "Santa Luzia D'Oeste",
+          "Pimenta Bueno",
+          "Primavera de Rondônia",
+          "São Felipe D'Oeste",
+          "Alvorada D'Oeste",
+          "Nova Brasilândia D'Oeste",
+          "Seringueiras",
+          "São Miguel do Guaporé"
+        ]
+      },
+      {
+        "titulo": "VILHENA",
+        "sipams": ["A938"],
+        "inmet": ["A938"],
+        "municipios": ["Chupinguaia", "Parecis", "Vilhena"]
+      },
+      {
+        "titulo": "CEREJEIRAS",
+        "sipams": ["P028"],
+        "municipios": [
+          "Cabixi",
+          "Cerejeiras",
+          "Colorado do Oeste",
+          "Corumbiara",
+          "Pimenteiras do Oeste"
+        ]
+      }
+    ]
+  },
+  {
+    "key": "AC-1",
+    "nome": "Acre",
+    "uf": "AC",
+    "regioes": [
+      {
+        "titulo": "TARAUACÁ",
+        "sipams": ["A107"],
+        "inmet": ["82807"],
+        "ogimet": "82807",
+        "municipios": ["Feijó", "Jordão", "Tarauacá"]
+      },
+      {
+        "titulo": "CRUZEIRO DO SUL",
+        "sipams": ["A108"],
+        "inmet": ["A108"],
+        "municipios": [
+          "Cruzeiro do Sul",
+          "Mâncio Lima",
+          "Porto Walter",
+          "Rodrigues Alves",
+          "Marechal Thaumaturgo"
+        ]
+      },
+      {
+        "titulo": "RIO BRANCO",
+        "sipams": ["A104"],
+        "inmet": ["82915"],
+        "ogimet": "82917",
+        "municipios": [
+          "Acrelândia",
+          "Bujari",
+          "Capixaba",
+          "Plácido de Castro",
+          "Porto Acre",
+          "Rio Branco",
+          "Senador Guiomard"
+        ]
+      },
+      {
+        "titulo": "BRASILÉIA",
+        "sipams": ["A140"],
+        "ogimet": "85041",
+        "municipios": ["Assis Brasil", "Brasiléia", "Epitaciolândia", "Xapuri"]
+      },
+      {
+        "titulo": "SENA MADUREIRA",
+        "sipams": ["A103"],
+        "inmet": ["A103"],
+        "municipios": ["Manoel Urbano", "Santa Rosa do Purus", "Sena Madureira"]
+      }
+    ]
+  }
+]
