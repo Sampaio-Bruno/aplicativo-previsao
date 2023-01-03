@@ -51,7 +51,7 @@
       },
       {
         "titulo": "GUAJARÁ-MIRIM",
-        "sipams": ["P031"],
+        "sipams": ["P031", "P125"],
         "ogimet": "85043",
         "municipios": ["Costa Marques", "Guajará-Mirim", "São Francisco do Guaporé", "Nova Mamoré"]
       },
@@ -129,7 +129,7 @@
       },
       {
         "titulo": "CRUZEIRO DO SUL",
-        "sipams": ["A108"],
+        "sipams": ["P035"],
         "inmet": ["A108"],
         "municipios": [
           "Cruzeiro do Sul",
@@ -156,7 +156,7 @@
       },
       {
         "titulo": "BRASILÉIA",
-        "sipams": ["A140"],
+        "sipams": ["P034"],
         "ogimet": "85041",
         "municipios": ["Assis Brasil", "Brasiléia", "Epitaciolândia", "Xapuri"]
       },
