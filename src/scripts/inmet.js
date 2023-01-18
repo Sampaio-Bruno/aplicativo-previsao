@@ -3,8 +3,8 @@ export function getData(estacao, ontem, hoje) {
   const getAutomatica = () => {
     let tMax; let tMin; let uMax; let uMin;
     let pre;
-    const table = document.querySelector('#tabela');
-    table.querySelectorAll('tbody tr').forEach((tr) => {
+    const table = document.querySelector('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > table');
+    table.querySelectorAll('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > table > tbody tr').forEach((tr) => {
       const preAux = parseFloat(tr.querySelector('td:nth-child(19)').textContent.replace(',', '.'), 10);
       if (!pre && !Number.isNaN(preAux)) {
         pre = preAux;
@@ -34,8 +34,8 @@ export function getData(estacao, ontem, hoje) {
   const getConvencional = () => {
     let tMax; let tMin; let uMax; let uMin;
     let pre;
-    const table = document.querySelector('#tabela');
-    table.querySelectorAll('tbody tr').forEach((tr) => {
+    const table = document.querySelector('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > table');
+    table.querySelectorAll('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > table > tbody tr').forEach((tr) => {
       const preAux = parseFloat(tr.querySelector('td:nth-child(12)').textContent.replace(',', '.'), 10);
       if (!pre && !Number.isNaN(preAux)) {
         pre = preAux;
@@ -64,19 +64,16 @@ export function getData(estacao, ontem, hoje) {
 
   const process = (resolve, reject) => {
     try {
-      document.querySelector('#menu').click();
-      document.querySelector('#datepicker_EstacoesTabela_Inicio').value = ontem;
-      document.querySelector('#datepicker_EstacoesTabela_Fim').value = hoje;
-      document.querySelector('#EstacoesTabela').click();
-
+      document.querySelector('#root > div.ui.top.attached.header-container.menu > div.left.menu > i').click();
       let tentativas = 0;
 
       const espera = setInterval(() => {
-        if (document.querySelector('.tbodyEstacoes tr')) {
+        if (document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > div.ui.compact.buttons')) {
           clearInterval(espera);
-          const tipo = document.querySelector('.tipo_estacao option[selected]').value;
-          if (tipo === 'T') resolve(getAutomatica());
-          if (tipo === 'M') resolve(getConvencional());
+          const tipo = document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > div.ui.compact.buttons > button.ui.button.btn-active').textContent;
+          document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > button').click();
+          if (tipo === 'Automáticas') setTimeout(resolve(getAutomatica()), 10000);
+          if (tipo === 'Convencionais') setTimeout(resolve(getConvencional()), 10000);
         } else if (tentativas > 3) {
           reject(new Error('Dados não encontrados'));
           clearInterval(espera);
@@ -89,18 +86,31 @@ export function getData(estacao, ontem, hoje) {
   };
 
   return new Promise((resolve, reject) => {
+    document.querySelector('#root > div.ui.top.attached.header-container.menu > div.left.menu > i').click();
     let tentativas = 0;
+    let windowre = 0;
+
     const espera = setInterval(() => {
-      if (document.querySelector('.tbodyEstacoes tr')) {
-        if (document.querySelector('.descTabela').textContent.includes(estacao)) {
-          clearInterval(espera);
-          process(resolve, reject);
+      if (document.querySelector('#root > div.ui.top.attached.header-container.menu > div.right.menu > span')) {
+        if (document.querySelector('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > div > span').textContent.includes(estacao)) {
+          if (document.querySelector('#root > div.pushable.sidebar-content > div.pusher.wrapped-content > div > div > div > span').textContent.includes(ontem)) {
+            clearInterval(espera);
+            process(resolve, reject);
+          }
         } else {
           reject(new Error('Estação não encontrada'));
         }
       } else if (tentativas > 3) {
         // Recarrega a página até passar um possível limite de requisições por tempo
-        window.location.reload(true);
+        if (windowre > 3) {
+          reject(new Error('Estação não encontrada'));
+          alert('Estação não encontrada');
+        } else {
+          window.location.reload(true);
+          windowre += 1;
+          alert('recarregou');
+          alert(windowre);
+        }
       } else {
         tentativas += 1;
       }

@@ -19,7 +19,7 @@
 import { ipcRenderer } from 'electron';
 import path from 'path';
 import Sipam from '@/components/Sipam.vue';
-// import Inmet from '@/components/Inmet.vue';
+import Inmet from '@/components/Inmet.vue';
 import Ogimet from '@/components/Ogimet.vue';
 import Wunderground from '@/components/Wunderground.vue';
 import Tabela from '@/components/Tabela.vue';
@@ -61,6 +61,25 @@ const makeSipam = async (estados) => {
 };
 
 // Insere os dados obtidos do Ogimet no array de dados de previsão
+const makeInmet = (dadosArray, estados) => {
+  estados.forEach((estado) => {
+    estado.regioes.forEach((regiao) => {
+      if (!regiao.inmet) return;
+      const dados = dadosArray.find((x) => regiao.inmet.includes(x.id.toString()));
+      console.log(dados);
+      if (dados) {
+        // eslint-disable-next-line no-param-reassign
+        if (!regiao.sitTemp || regiao.sitTemp === '*') regiao.sitTemp = dados.sitTemp;
+        // eslint-disable-next-line no-param-reassign
+        if (!regiao.sitUmi || regiao.sitUmi === '*') regiao.sitUmi = dados.sitUmi;
+        // eslint-disable-next-line no-param-reassign
+        if (!regiao.sitPre || regiao.sitPre === '*') regiao.sitPre = dados.sitPre;
+      }
+    });
+    // eslint-disable-next-line no-param-reassign
+    estado.key = `${estado.uf}-3`;
+  });
+};
 
 // Insere os dados obtidos do Ogimet no array de dados de previsão
 const makeOgimet = (dadosArray, estados) => {
@@ -205,6 +224,10 @@ export default {
       switch (fonte) {
         case 'sipam':
           makeSipam(this.estados);
+          this.inmet();
+          break;
+        case 'inmet':
+          makeInmet(dados, this.estados);
           this.ogimet();
           break;
         case 'ogimet':
@@ -230,6 +253,9 @@ export default {
       this.fonte = null;
       switch (fonte) {
         case 'sipam':
+          this.inmet();
+          break;
+        case 'inmet':
           this.ogimet();
           break;
         case 'ogimet':
@@ -250,6 +276,17 @@ export default {
     /**
      * Prepara os identificadores para obtenção dos dados da Ogimet
      */
+    async inmet() {
+      const params = this.estados.reduce((arr1, estado) => {
+        const regioes = estado.regioes.reduce((arr2, regiao) => {
+          if (regiao.inmet) arr2.push({ titulo: regiao.titulo, inmet: regiao.inmet });
+          return arr2;
+        }, []);
+        return arr1.concat(regioes);
+      }, []);
+      this.params = params;
+      this.fonte = Inmet;
+    },
 
     /**
      * Prepara os identificadores para obtenção dos dados da Ogimet
