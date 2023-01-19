@@ -86,7 +86,24 @@ export function getData(estacao, ontem, hoje) {
   };
 
   return new Promise((resolve, reject) => {
-    document.querySelector('#root > div.ui.top.attached.header-container.menu > div.left.menu > i').click();
+    let elemento;
+    setTimeout(() => {
+      document.querySelector('#root > div.ui.top.attached.header-container.menu > div.left.menu > i').click();
+      if (estacao.includes('A')) {
+        document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > div.ui.compact.buttons > button:nth-child(1)').click();
+      } else {
+        document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > div.ui.compact.buttons > button:nth-child(1)').click();
+        document.querySelector('#root > div.pushable.sidebar-content > div.ui.vertical.ui.overlay.left.visible.sidebar.menu > div:nth-child(2) > div.ui.compact.buttons > button:nth-child(2)').click();
+      }
+    }, 1000);
+    setTimeout(() => {
+      document.querySelectorAll('span').forEach((element) => {
+        if (element.textContent.includes(estacao)) {
+          elemento = element.closest('div');
+          elemento.click();
+        }
+      });
+    }, 2000);
     let tentativas = 0;
     let windowre = 0;
 
