@@ -163,7 +163,6 @@
       {
         "titulo": "SENA MADUREIRA",
         "sipams": ["A103"],
-        "inmet": ["A103"],
         "municipios": ["Manoel Urbano", "Santa Rosa do Purus", "Sena Madureira"]
       }
     ]
